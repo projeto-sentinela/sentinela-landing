@@ -5,34 +5,34 @@
    ============================================================ */
 
 /* Fraunces (display/números, 400–500) + Inter (corpo/UI, 400–500).
-   Self-hospedadas a partir dos arquivos da marca em fonts/. */
+   Self-hospedadas a partir dos arquivos da marca em . */
 @font-face {
   font-family: 'Fraunces';
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url('fonts/Fraunces-Display-Regular.ttf') format('truetype');
+  src: url('Fraunces-Display-Regular.ttf') format('truetype');
 }
 @font-face {
   font-family: 'Fraunces';
   font-style: normal;
   font-weight: 500;
   font-display: swap;
-  src: url('fonts/Fraunces-Display-Medium.ttf') format('truetype');
+  src: url('Fraunces-Display-Medium.ttf') format('truetype');
 }
 @font-face {
   font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url('fonts/Inter-Regular.ttf') format('truetype');
+  src: url('Inter-Regular.ttf') format('truetype');
 }
 @font-face {
   font-family: 'Inter';
   font-style: normal;
   font-weight: 500;
   font-display: swap;
-  src: url('fonts/Inter-Medium.ttf') format('truetype');
+  src: url('Inter-Medium.ttf') format('truetype');
 }
 /* Peso 600 (usado em microcopy/labels) cai pra Medium sintetizado — sem CDN. */
 @font-face {
@@ -40,7 +40,7 @@
   font-style: normal;
   font-weight: 600;
   font-display: swap;
-  src: url('fonts/Inter-Medium.ttf') format('truetype');
+  src: url('Inter-Medium.ttf') format('truetype');
 }
 
 :root {
