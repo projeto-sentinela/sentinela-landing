@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sentinela · Política de Privacidade</title>
+  <meta name="description" content="Como o Sentinela trata dados pessoais, em conformidade com a LGPD (Lei nº 13.709/2018).">
+  <link rel="stylesheet" href="colors_and_type.css">
+  <style>
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--paper); -webkit-font-smoothing: antialiased; }
+    * { box-sizing: border-box; }
+    ::selection { background: rgba(201,123,74,.25); }
+    a { color: var(--green-deep); text-decoration: underline; text-underline-offset: 2px; text-decoration-color: var(--green-deep-12); }
+    a:hover { text-decoration-color: var(--terracota); }
+
+    /* header */
+    .doc-head { border-bottom: 1px solid var(--border); background: rgba(250,247,242,.85); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 10; }
+    .doc-head .bar { max-width: 760px; margin: 0 auto; padding: 0 28px; height: 72px; display: flex; align-items: center; }
+    .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .brand img { width: 36px; height: 36px; display: block; }
+    .brand .name { font-family: var(--font-display); font-weight: 500; font-size: 22px; letter-spacing: -.01em; color: var(--green-deep); }
+    .back { margin-left: auto; font-family: var(--font-body); font-size: 14px; color: var(--fg2); text-decoration: none; display: inline-flex; align-items: center; gap: 7px; }
+    .back:hover { color: var(--green-deep); }
+
+    /* document */
+    .doc { max-width: 760px; margin: 0 auto; padding: 64px 28px 110px; }
+    .eyebrow { font-family: var(--font-body); font-weight: 500; font-size: 12.5px; text-transform: uppercase; letter-spacing: .22em; color: var(--terracota); }
+    h1 { font-family: var(--font-display); font-weight: 400; font-size: 50px; line-height: 1.06; letter-spacing: -.02em; color: var(--green-deep); margin: 18px 0 0; text-wrap: balance; }
+    .updated { font-family: var(--font-body); font-size: 14px; color: var(--fg3); margin: 18px 0 0; }
+    .intro { font-family: var(--font-body); font-size: 18px; line-height: 1.65; color: var(--fg2); margin: 34px 0 0; text-wrap: pretty; }
+
+    h2 { font-family: var(--font-display); font-weight: 500; font-size: 26px; line-height: 1.18; letter-spacing: -.008em; color: var(--green-deep); margin: 64px 0 0; }
+    h2 .num { color: var(--terracota); font-variant-numeric: tabular-nums; margin-right: 12px; }
+    h3 { font-family: var(--font-body); font-weight: 600; font-size: 16px; color: var(--fg1); margin: 28px 0 0; }
+    p { font-family: var(--font-body); font-size: 16.5px; line-height: 1.7; color: var(--fg2); margin: 16px 0 0; text-wrap: pretty; }
+    ul { margin: 16px 0 0; padding-left: 0; list-style: none; }
+    li { font-family: var(--font-body); font-size: 16.5px; line-height: 1.65; color: var(--fg2); margin: 11px 0 0; padding-left: 26px; position: relative; }
+    li::before { content: ""; position: absolute; left: 4px; top: 12px; width: 6px; height: 6px; border-radius: 50%; background: var(--sage, #7A8B6F); }
+    strong { font-weight: 600; color: var(--fg1); }
+    .lead-co { font-family: var(--font-body); font-size: 16.5px; line-height: 1.7; color: var(--fg1); font-weight: 500; }
+
+    /* identity block */
+    .entity { margin: 16px 0 0; padding: 22px 24px; background: var(--bg-raised); border: 1px solid var(--border); border-radius: 16px; }
+    .entity .nm { font-family: var(--font-body); font-weight: 600; font-size: 15.5px; color: var(--fg1); }
+    .entity p { margin: 6px 0 0; font-size: 15px; }
+
+    /* table */
+    .table-wrap { margin: 22px 0 0; border: 1px solid var(--border); border-radius: 16px; overflow: hidden; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { text-align: left; padding: 15px 18px; font-family: var(--font-body); font-size: 14.5px; line-height: 1.5; vertical-align: top; }
+    th { background: var(--green-deep); color: #fff; font-weight: 500; font-size: 12.5px; text-transform: uppercase; letter-spacing: .1em; }
+    td { color: var(--fg2); border-top: 1px solid var(--border); }
+    td:first-child { color: var(--fg1); font-weight: 500; width: 56%; }
+    tr:nth-child(even) td { background: var(--paper-shade); }
+
+    /* callout */
+    .callout { margin: 24px 0 0; padding: 20px 24px; background: var(--terracota-soft); border-radius: 16px; display: flex; gap: 14px; }
+    .callout .ic { color: #a85c2f; flex: none; margin-top: 1px; }
+    .callout p { margin: 0; font-size: 15.5px; color: #6e4226; }
+    .callout p strong { color: #5a361f; }
+    .callout.soft { background: var(--green-soft); }
+    .callout.soft .ic { color: var(--green-deep); }
+    .callout.soft p { color: #21443c; }
+    .callout.soft p strong { color: var(--green-deep); }
+
+    /* footer */
+    .doc-foot { border-top: 1px solid var(--border); }
+    .doc-foot .inner { max-width: 760px; margin: 0 auto; padding: 30px 28px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+    .doc-foot a { font-family: var(--font-body); font-size: 14px; }
+    .doc-foot .muted { font-family: var(--font-body); font-size: 12.5px; color: var(--fg3); }
+
+    @media (max-width: 620px) {
+      h1 { font-size: 38px; }
+      td:first-child { width: auto; }
+      th, td { padding: 12px 14px; }
+    }
+  </style>
+  <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+</head>
+<body>
+  <header class="doc-head">
+    <div class="bar">
+      <a class="brand" href="Pagina de Vendas.html">
+        <img src="marketing/assets/sentinela-icon-circle.svg" alt="Sentinela">
+        <span class="name">Sentinela</span>
+      </a>
+      <a class="back" href="Pagina de Vendas.html"><i data-lucide="arrow-left" style="width:16px;height:16px"></i>Voltar ao site</a>
+    </div>
+  </header>
+
+  <main class="doc">
+    <div class="eyebrow">Documento legal</div>
+    <h1>Política de Privacidade</h1>
+    <p class="updated">Última atualização: junho de 2026</p>
+
+    <p class="intro">Esta Política explica como o Sentinela trata dados pessoais, em conformidade com a Lei nº 13.709/2018 (Lei Geral de Proteção de Dados — LGPD) e com os regulamentos da Autoridade Nacional de Proteção de Dados (ANPD). Leia com atenção. Ao usar o Sentinela, você declara estar ciente desta Política.</p>
+
+    <h2><span class="num">1</span>Quem é o responsável pelos seus dados</h2>
+    <p>O Sentinela é um software de organização operado por:</p>
+    <div class="entity">
+      <div class="nm">ORBYX DESENVOLVIMENTO DE SOFTWARE CUSTOMIZÁVEL LTDA</div>
+      <p>CNPJ 67.205.883/0001-47 — Inscrição Municipal (São Paulo/SP) 3597474</p>
+      <p>Endereço: Rua Pais Leme, 215 — Conj. 1713 — Pinheiros — São Paulo/SP — CEP 05424-150</p>
+      <p>Contato: <a href="mailto:contato@sentinelapro.com">contato@sentinelapro.com</a></p>
+    </div>
+    <p>Sempre que esta Política falar em "Sentinela", "nós" ou "ORBYX", refere-se a essa empresa.</p>
+
+    <h2><span class="num">2</span>Definições rápidas</h2>
+    <ul>
+      <li><strong>Titular:</strong> a pessoa a quem os dados se referem (a fotógrafa usuária, a gestante/cliente, a colaboradora).</li>
+      <li><strong>Dado pessoal:</strong> qualquer informação que identifique ou possa identificar uma pessoa (nome, e-mail, telefone etc.).</li>
+      <li><strong>Dado pessoal sensível:</strong> dado sobre saúde, entre outras categorias especiais. Informações de gestação — como data da última menstruação (DUM), data provável do parto (DPP), hospital e obstetra — são dados de saúde e recebem proteção reforçada na LGPD.</li>
+      <li><strong>Controlador:</strong> quem decide como e por que os dados são tratados.</li>
+      <li><strong>Operador:</strong> quem trata os dados em nome do controlador, seguindo as instruções dele.</li>
+    </ul>
+
+    <h2><span class="num">3</span>Quais dados tratamos</h2>
+    <p><strong>3.1. Dados da fotógrafa (usuária do Sentinela):</strong> nome, e-mail, senha (armazenada de forma criptografada), foto de perfil, telefone, cidade, dados profissionais, informações dos veículos cadastrados para cálculo de deslocamento e dados financeiros do negócio que você registra (valores, despesas, contas a pagar e a receber).</p>
+    <p><strong>3.2. Dados das gestantes e clientes (inseridos pela fotógrafa):</strong> nome, telefone, cidade, data da última menstruação (DUM), data provável do parto (DPP), semana gestacional, hospital/maternidade, obstetra e anotações — além de dados de outros tipos de cliente (newborn, ensaio, aniversário etc.). Parte desses dados pode ser informada pela própria gestante por meio de um link de acesso (portal da gestante).</p>
+    <p><strong>3.3. Dados das colaboradoras (freelas):</strong> nome, e-mail, telefone e informações sobre os trabalhos em que atuam.</p>
+    <p><strong>3.4. Dados de pagamento:</strong> as assinaturas são processadas pela plataforma Asaas. O Sentinela não armazena números de cartão; esses dados são tratados diretamente pelo Asaas, que atua como operador de pagamento.</p>
+    <p><strong>3.5. Dados de navegação e segurança:</strong> registros de acesso e de ações na plataforma, que podem incluir endereço IP e identificação do navegador (user agent), usados para segurança, prevenção a fraudes e auditoria.</p>
+
+    <h2><span class="num">4</span>Nossos papéis (quem controla o quê)</h2>
+    <p>A LGPD distingue controlador e operador. No Sentinela, isso se aplica assim:</p>
+    <ul>
+      <li>Em relação aos <strong>dados de cadastro da fotógrafa usuária</strong>, a ORBYX é a <strong>controladora</strong> (decidimos as finalidades — prestar o serviço, cobrar a assinatura, dar suporte e segurança).</li>
+      <li>Em relação aos <strong>dados das gestantes, clientes e colaboradoras</strong> que a fotógrafa cadastra, a <strong>fotógrafa é a controladora</strong> desses dados (é ela quem decide coletá-los para o seu trabalho), e o <strong>Sentinela atua como operador</strong>, tratando-os conforme as instruções da fotógrafa e exclusivamente para fazer a plataforma funcionar.</li>
+    </ul>
+    <p>Isso significa que a fotógrafa é responsável por ter uma base legal adequada (por exemplo, o consentimento da gestante) para inserir os dados de suas clientes no Sentinela, e por usá-los de forma lícita.</p>
+
+    <h2><span class="num">5</span>Para que usamos os dados e com qual base legal</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Finalidade</th><th>Base legal — LGPD</th></tr></thead>
+        <tbody>
+          <tr><td>Criar e manter sua conta e prestar o serviço contratado</td><td>Execução de contrato (art. 7º, V)</td></tr>
+          <tr><td>Cobrança, emissão de nota fiscal e obrigações fiscais</td><td>Cumprimento de obrigação legal/regulatória (art. 7º, II) e execução de contrato</td></tr>
+          <tr><td>Organização de gestantes, agenda, plantão e financeiro da fotógrafa</td><td>Execução de contrato e legítimo interesse (art. 7º, IX)</td></tr>
+          <tr><td>Tratamento dos dados de saúde das gestantes</td><td>Consentimento específico e destacado do titular (art. 11, I) — obtido pela fotógrafa</td></tr>
+          <tr><td>Segurança, prevenção a fraude e registros de acesso</td><td>Legítimo interesse (art. 7º, IX)</td></tr>
+          <tr><td>Comunicações sobre o serviço (avisos, suporte)</td><td>Execução de contrato</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2><span class="num">6</span>Tratamento de dados de saúde (atenção especial)</h2>
+    <p>Os dados de gestação são dados pessoais sensíveis (de saúde). Por isso:</p>
+    <ul>
+      <li>A base legal para tratá-los é, em regra, o <strong>consentimento específico e destacado</strong> do titular (a gestante), nos termos do art. 11, I, da LGPD.</li>
+      <li>Esse consentimento é colhido pela fotógrafa, que é a controladora desses dados. O Sentinela disponibiliza um aviso de privacidade e um campo de consentimento no portal da gestante para apoiar esse processo, mas a responsabilidade pela coleta lícita é da fotógrafa.</li>
+      <li>Usamos esses dados somente para fazer o serviço funcionar (cálculo de janela de parto, alertas, organização) — nunca para finalidade diversa.</li>
+    </ul>
+
+    <h2><span class="num">7</span>Com quem compartilhamos (operadores e parceiros)</h2>
+    <p>Não vendemos dados pessoais. Compartilhamos dados apenas com prestadores que nos ajudam a operar o serviço, na medida necessária:</p>
+    <ul>
+      <li><strong>Supabase</strong> — hospedagem do banco de dados (servidores na região de São Paulo, Brasil).</li>
+      <li><strong>Asaas</strong> — processamento de pagamentos e emissão de nota fiscal.</li>
+      <li><strong>Anthropic e OpenAI</strong> — provedores de inteligência artificial, quando você usa as funções de IA do Sentinela (assistente e transcrição de áudio). Ver o item 8 sobre transferência internacional.</li>
+      <li><strong>Locaweb</strong> — envio de e-mails do sistema.</li>
+      <li><strong>Vercel e Cloudflare</strong> — hospedagem e proteção do site público.</li>
+    </ul>
+    <p>Cada um desses prestadores trata os dados conforme instruções do Sentinela e suas próprias políticas de segurança.</p>
+
+    <h2><span class="num">8</span>Transferência internacional de dados</h2>
+    <p>Alguns prestadores (notadamente os provedores de inteligência artificial, Anthropic e OpenAI) processam dados em servidores fora do Brasil, especialmente nos Estados Unidos. Quando você utiliza as funções de IA, informações da plataforma — que podem incluir dados de gestantes — são enviadas a esses provedores para gerar a resposta.</p>
+    <p>Essas transferências seguem o Regulamento de Transferência Internacional de Dados (Resolução CD/ANPD nº 19/2024), por meio de cláusulas-padrão contratuais e demais salvaguardas exigidas pela ANPD, para assegurar a esses dados o mesmo nível de proteção previsto na legislação brasileira.</p>
+    <div class="callout">
+      <span class="ic"><i data-lucide="alert-triangle" style="width:20px;height:20px"></i></span>
+      <p><strong>Importante para a fotógrafa:</strong> o uso das funções de IA sobre dados de gestantes implica esse envio ao exterior. Se você não desejar essa transferência, evite usar as funções de IA com dados sensíveis identificáveis.</p>
+    </div>
+
+    <h2><span class="num">9</span>Por quanto tempo guardamos os dados</h2>
+    <ul>
+      <li><strong>Dados da conta e operacionais:</strong> enquanto sua conta estiver ativa.</li>
+      <li><strong>Após o encerramento da conta:</strong> mantemos os dados pelo período necessário para cumprir obrigações legais e, depois, eliminamos ou anonimizamos.</li>
+      <li><strong>Dados fiscais e de pagamento:</strong> pelo prazo exigido pela legislação fiscal (em regra, 5 anos).</li>
+      <li><strong>Registros de acesso e segurança (incluindo IP):</strong> por prazo limitado e proporcional à finalidade de segurança, após o qual são eliminados ou anonimizados.</li>
+    </ul>
+
+    <h2><span class="num">10</span>Como protegemos seus dados</h2>
+    <p>Adotamos medidas técnicas e organizacionais compatíveis com a natureza dos dados, entre elas: controle de acesso por usuário, regras de segurança em nível de banco de dados, criptografia de senhas, armazenamento de fotos em repositórios privados (acesso por link assinado) e registros de auditoria. Como agente de pequeno porte que trata dados sensíveis, mantemos uma política de segurança proporcional à nossa estrutura, sem prejuízo do dever de proteger adequadamente os dados.</p>
+    <p>Nenhum sistema é 100% imune a incidentes, mas trabalhamos continuamente para reduzir riscos.</p>
+
+    <h2><span class="num">11</span>Cookies</h2>
+    <p>O Sentinela não utiliza cookies de rastreamento, publicidade ou análise de comportamento. Utilizamos apenas um cookie técnico, estritamente necessário, para lembrar preferências de exibição da interface (por exemplo, se o menu lateral está aberto ou fechado). Cookies estritamente necessários não dependem de consentimento prévio.</p>
+    <p>Caso, no futuro, o site público passe a usar ferramentas de análise, esta Política será atualizada e o consentimento prévio será solicitado quando exigido.</p>
+
+    <h2><span class="num">12</span>Seus direitos</h2>
+    <p>A LGPD garante a você, titular, os seguintes direitos (art. 18):</p>
+    <ul>
+      <li>confirmação de que tratamos seus dados e acesso a eles;</li>
+      <li>correção de dados incompletos, inexatos ou desatualizados;</li>
+      <li>anonimização, bloqueio ou eliminação de dados desnecessários ou tratados em desconformidade;</li>
+      <li>portabilidade dos dados;</li>
+      <li>eliminação dos dados tratados com base no consentimento;</li>
+      <li>informação sobre com quem compartilhamos seus dados;</li>
+      <li>revogação do consentimento.</li>
+    </ul>
+    <p><strong>Como exercer:</strong> envie um pedido para <a href="mailto:contato@sentinelapro.com">contato@sentinelapro.com</a>. Responderemos no prazo legal. Por sermos um agente de tratamento de pequeno porte, podemos utilizar os prazos previstos na Resolução CD/ANPD nº 2/2022 para atender às solicitações.</p>
+    <div class="callout soft">
+      <span class="ic"><i data-lucide="wrench" style="width:20px;height:20px"></i></span>
+      <p>Estamos desenvolvendo funções no próprio sistema para exclusão de conta e exportação dos seus dados diretamente pela plataforma. Enquanto elas não estão disponíveis, esses pedidos são atendidos pelo canal de contato acima.</p>
+    </div>
+
+    <h2><span class="num">13</span>Dados de menores de idade</h2>
+    <p>Se a gestante for menor de 18 anos, o tratamento dos seus dados deve observar o art. 14 da LGPD, com consentimento específico dado por pelo menos um dos pais ou pelo responsável legal. Cabe à fotógrafa (controladora desses dados) assegurar essa condição antes de inserir os dados de uma gestante menor de idade.</p>
+
+    <h2><span class="num">14</span>Incidentes de segurança</h2>
+    <p>Em caso de incidente de segurança que possa acarretar risco ou dano relevante aos titulares, comunicaremos a ANPD e os titulares afetados conforme o Regulamento de Comunicação de Incidente de Segurança (Resolução CD/ANPD nº 15/2024), em regra no prazo de 3 dias úteis a contar do conhecimento do incidente — prazo contado em dobro por sermos agente de pequeno porte, quando aplicável —, com as informações exigidas pela norma.</p>
+
+    <h2><span class="num">15</span>Encarregado e canal de contato</h2>
+    <p>Para qualquer assunto relacionado a dados pessoais — dúvidas, solicitações ou reclamações —, fale conosco pelo canal: <a href="mailto:contato@sentinelapro.com">contato@sentinelapro.com</a></p>
+    <p>Encarregado(a) pelo Tratamento de Dados Pessoais: [indicar nome, se a ORBYX optar por nomear um encarregado]. Por sermos agente de tratamento de pequeno porte, a indicação formal de encarregado é facultativa (Resolução CD/ANPD nº 2/2022), mas mantemos o canal acima à disposição dos titulares.</p>
+
+    <h2><span class="num">16</span>Autoridade Nacional de Proteção de Dados (ANPD)</h2>
+    <p>Você também pode apresentar reclamação diretamente à ANPD (<a href="https://www.gov.br/anpd" target="_blank" rel="noopener">gov.br/anpd</a>) caso entenda que seus direitos não foram atendidos.</p>
+
+    <h2><span class="num">17</span>Alterações desta Política</h2>
+    <p>Podemos atualizar esta Política a qualquer momento. Quando houver mudança relevante, avisaremos pelos canais do serviço e atualizaremos a data no topo deste documento.</p>
+  </main>
+
+  <footer class="doc-foot">
+    <div class="inner">
+      <span class="muted">© 2026 Sentinela · ORBYX · São Paulo, Brasil</span>
+      <a href="termos.html">Termos de Uso</a>
+    </div>
+  </footer>
+
+  <script>if (window.lucide) lucide.createIcons({ attrs: { "stroke-width": 1.9 } });</script>
+</body>
+</html>

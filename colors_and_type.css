@@ -1,0 +1,210 @@
+/* ============================================================
+   SENTINELA — Colors & Type foundation
+   SaaS de plantão de parto para fotógrafas de parto (BR)
+   Estética editorial / Kinfolk: calma, premium, muito respiro.
+   ============================================================ */
+
+/* Fraunces (display/números, 400–500) + Inter (corpo/UI, 400–500).
+   Self-hospedadas a partir dos arquivos da marca em fonts/. */
+@font-face {
+  font-family: 'Fraunces';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('fonts/Fraunces-Display-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Fraunces';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('fonts/Fraunces-Display-Medium.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('fonts/Inter-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('fonts/Inter-Medium.ttf') format('truetype');
+}
+/* Peso 600 (usado em microcopy/labels) cai pra Medium sintetizado — sem CDN. */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('fonts/Inter-Medium.ttf') format('truetype');
+}
+
+:root {
+  /* ---- BRAND PALETTE (use SÓ estas em marketing) ---- */
+  --paper:        #FAF7F2; /* fundo / papel da marca */
+  --green-deep:   #04342C; /* tinta principal: logo, títulos, botões */
+  --brown:        #2B2118; /* texto de apoio, tagline */
+  --terracota:    #C97B4A; /* acento: o ponto, um CTA pontual — NUNCA dominante */
+  --green-soft:   #E1F5EE; /* fundos suaves, estados, destaques leves */
+
+  /* Tints derivados (oklch, dentro da família — para hover/borda/divisores) */
+  --green-deep-90: #16453c; /* hover de superfícies verdes */
+  --green-deep-12: #d8e3df; /* borda/divisor sobre papel */
+  --paper-shade:   #F2ECE3; /* segundo papel, cards sutis */
+  --terracota-soft:#F4E3D6; /* lavagem terracota (chips, badges) — não é fundo dominante */
+  --brown-60:      #6B5E4F; /* texto de apoio mais leve, legendas */
+
+  /* ---- FUNCTIONAL / PLANTÃO (SÓ no app — não são cores de marca) ---- */
+  --on-green:  #639922; /* longe do parto */
+  --on-yellow: #E89A2B; /* aproximando */
+  --on-red:    #CF3A33; /* iminente / em trabalho de parto */
+  --on-green-bg:  #EAF2DE;
+  --on-yellow-bg: #FBEFD9;
+  --on-red-bg:    #F7E1DF;
+
+  /* ---- SEMANTIC FOREGROUND / BACKGROUND ---- */
+  --bg:        var(--paper);
+  --bg-raised: #FFFFFF;
+  --bg-sunken: var(--paper-shade);
+  --fg1:       var(--green-deep);  /* títulos, tinta principal */
+  --fg2:       var(--brown);       /* corpo */
+  --fg3:       var(--brown-60);    /* legendas, meta */
+  --accent:    var(--terracota);
+  --border:    var(--green-deep-12);
+  --border-strong: #C4D2CC;
+
+  /* ---- TYPE FAMILIES ---- */
+  --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-body:    'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  /* ---- TYPE SCALE (editorial: títulos grandes, corpo calmo) ---- */
+  --step--1: 0.833rem;   /* 13.3px — meta/caption */
+  --step-0:  1rem;       /* 16px — corpo base */
+  --step-1:  1.2rem;     /* 19px — corpo grande / lead */
+  --step-2:  1.6rem;     /* 26px — h3 */
+  --step-3:  2.25rem;    /* 36px — h2 */
+  --step-4:  3.25rem;    /* 52px — h1 */
+  --step-5:  4.75rem;    /* 76px — display / números grandes */
+
+  /* tracking da tagline (caixa alta, espaçada, Inter) */
+  --tagline-tracking: 0.22em;
+
+  /* ---- RADII ---- */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-pill: 999px;
+
+  /* ---- SHADOWS (suaves, quentes — nada de preto puro) ---- */
+  --shadow-sm: 0 1px 2px rgba(43, 33, 24, 0.05);
+  --shadow-md: 0 6px 20px -8px rgba(43, 33, 24, 0.14);
+  --shadow-lg: 0 24px 60px -24px rgba(4, 52, 44, 0.22);
+
+  /* ---- SPACING (base 4 / ritmo editorial generoso) ---- */
+  --sp-1: 4px;  --sp-2: 8px;  --sp-3: 12px; --sp-4: 16px;
+  --sp-5: 24px; --sp-6: 32px; --sp-7: 48px; --sp-8: 64px;
+  --sp-9: 96px; --sp-10: 128px;
+}
+
+/* ============================================================
+   SEMANTIC ELEMENT STYLES — aplique via classe .s-*
+   ============================================================ */
+
+.s-body {
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  font-weight: 400;
+  line-height: 1.65;
+  color: var(--fg2);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.s-display {
+  font-family: var(--font-display);
+  font-optical-sizing: auto;
+  font-size: var(--step-5);
+  font-weight: 400;
+  line-height: 1.02;
+  letter-spacing: -0.015em;
+  color: var(--fg1);
+  text-wrap: balance;
+}
+
+.s-h1 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: var(--step-4);
+  line-height: 1.08;
+  letter-spacing: -0.012em;
+  color: var(--fg1);
+  text-wrap: balance;
+}
+
+.s-h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: var(--step-3);
+  line-height: 1.14;
+  letter-spacing: -0.008em;
+  color: var(--fg1);
+  text-wrap: balance;
+}
+
+.s-h3 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: var(--step-2);
+  line-height: 1.2;
+  color: var(--fg1);
+}
+
+.s-lead {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: var(--step-1);
+  line-height: 1.55;
+  color: var(--fg2);
+  text-wrap: pretty;
+}
+
+.s-p {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: var(--step-0);
+  line-height: 1.65;
+  color: var(--fg2);
+  text-wrap: pretty;
+}
+
+.s-caption {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: var(--step--1);
+  line-height: 1.4;
+  color: var(--fg3);
+}
+
+/* Tagline / eyebrow: Inter, caixa alta, espaçada */
+.s-tagline {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: var(--step--1);
+  text-transform: uppercase;
+  letter-spacing: var(--tagline-tracking);
+  color: var(--fg3);
+}
+
+/* Número grande (Fraunces) — métricas, calendário, contagem */
+.s-num {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-variant-numeric: lining-nums tabular-nums;
+  color: var(--fg1);
+  letter-spacing: -0.01em;
+}
