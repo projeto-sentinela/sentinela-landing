@@ -1,11 +1,10 @@
 // Preview do portal para WhatsApp/redes.
 // Recebe /p/{token} (via rewrite do vercel.json), busca a capa daquele portal
-// no Supabase e devolve as tags Open Graph com a imagem certa; a pessoa real
-// e redirecionada na hora para o portal de verdade.
+// no Supabase e devolve as tags Open Graph com a imagem certa.
+// IMPORTANTE: o robo do WhatsApp/Facebook NAO e redirecionado (le as tags e para);
+// so a pessoa real e redirecionada, e via JavaScript (robo nao executa JS).
 
 const APP_PORTAL_BASE = "https://app.sentinelapro.com/g/";
-// Fallback: imagem de marca usada quando o portal nao tem capa nem foto.
-// (temporaria: usa um arquivo que ja existe na landing; trocar depois por uma 1200x630)
 const FALLBACK_IMAGE = "https://sentinelapro.com/sentinela-alerta-hero.png";
 const BUCKET = "portal-media";
 const SITE_NAME = "Sentinela";
@@ -18,6 +17,8 @@ export default async function handler(req, res) {
   const destino = token
     ? `${APP_PORTAL_BASE}${encodeURIComponent(token)}`
     : "https://app.sentinelapro.com";
+
+  const crawler = isCrawler(req.headers && req.headers["user-agent"]);
 
   let imageUrl = FALLBACK_IMAGE;
 
@@ -55,6 +56,12 @@ export default async function handler(req, res) {
     // qualquer erro -> usa a imagem de marca (fallback)
   }
 
+  // Redirecionamento SO por JavaScript e SO para pessoas (nao para robos).
+  // Sem meta-refresh e sem canonical: assim o robo le estas tags e para aqui.
+  const redirectScript = crawler
+    ? ""
+    : `<script>window.location.replace(${JSON.stringify(destino)});</script>`;
+
   const html = `<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -72,9 +79,7 @@ export default async function handler(req, res) {
 <meta name="twitter:title" content="${esc(TITLE)}">
 <meta name="twitter:description" content="${esc(DESCRIPTION)}">
 <meta name="twitter:image" content="${esc(imageUrl)}">
-<link rel="canonical" href="${esc(destino)}">
-<meta http-equiv="refresh" content="0; url=${esc(destino)}">
-<script>window.location.replace(${JSON.stringify(destino)});</script>
+${redirectScript}
 </head>
 <body style="font-family:system-ui,-apple-system,sans-serif;background:#04342C;color:#fff;display:flex;align-items:center;justify-content:center;height:100vh;margin:0;text-align:center;padding:24px;">
 <p>Abrindo seu portal… <a href="${esc(destino)}" style="color:#E1F5EE;">Clique aqui se não for redirecionado.</a></p>
@@ -84,6 +89,19 @@ export default async function handler(req, res) {
   res.setHeader("Content-Type", "text/html; charset=utf-8");
   res.setHeader("Cache-Control", "public, max-age=0, s-maxage=300, stale-while-revalidate=600");
   res.status(200).send(html);
+}
+
+// Detecta robos de preview (WhatsApp, Facebook, Twitter, Telegram, etc.)
+function isCrawler(ua) {
+  if (!ua) return false;
+  const s = String(ua).toLowerCase();
+  const bots = [
+    "facebookexternalhit", "facebot", "whatsapp", "twitterbot", "telegrambot",
+    "linkedinbot", "slackbot", "slack-imgproxy", "discordbot", "pinterest",
+    "redditbot", "googlebot", "bingbot", "applebot", "vkshare", "embedly",
+    "skypeuripreview", "bot", "crawler", "spider",
+  ];
+  return bots.some((b) => s.includes(b));
 }
 
 // Le o token de qualquer forma que a Vercel entregar (query, URL crua ou path /p/xxx)
