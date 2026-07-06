@@ -5,7 +5,7 @@
 // so a pessoa real e redirecionada, e via JavaScript (robo nao executa JS).
 
 const APP_PORTAL_BASE = "https://app.sentinelapro.com/g/";
-const FALLBACK_IMAGE = "https://sentinelapro.com/sentinela-alerta-hero.png";
+const FALLBACK_IMAGE = "https://sentinelapro.com/og-portal.png";
 const BUCKET = "portal-media";
 const SITE_NAME = "Sentinela";
 const TITLE = "Sentinela · seu portal de fotos";
@@ -123,7 +123,7 @@ function buildPublicImageUrl(path, supabaseUrl) {
   if (!path) return null;
   if (/^https?:\/\//i.test(path)) return path; // dado legado (ja e URL completa)
   const clean = String(path).replace(/^\/+/, "");
-  return `${supabaseUrl}/storage/v1/object/public/${BUCKET}/${clean}`;
+  return `${clean.startsWith("http") ? clean : supabaseUrl + "/storage/v1/object/public/" + BUCKET + "/" + clean}`;
 }
 
 function esc(s) {
