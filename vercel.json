@@ -2,6 +2,7 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "rewrites": [
-    { "source": "/p/:token", "destination": "/api/portal-preview" }
+    { "source": "/p/:token", "destination": "/api/portal-preview" },
+    { "source": "/pc/:token", "destination": "/api/portal-cliente-preview" }
   ]
 }
